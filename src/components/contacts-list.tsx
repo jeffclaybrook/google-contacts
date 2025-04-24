@@ -20,12 +20,12 @@ export default function ContactsList({ contacts, onContactClick }: ContactListPr
       className="flex items-center gap-4 py-2 cursor-pointer rounded-sm md:hover:bg-[#edf2fc] text-[#1f1f1f] px-2"
      >
       <div className="flex items-center gap-2 max-w-xs w-full">
-       <span className="flex items-center justify-center shrink-0 w-8 h-8 rounded-full text-white text-sm" style={{ backgroundColor: contact.avatarColor }}>{initial}</span>
-       <h2 className="text-sm">{contact.firstName} {contact.lastName}</h2>
+       <span className="flex items-center justify-center shrink-0 w-10 h-10 rounded-full text-white text-sm" style={{ backgroundColor: contact.avatarColor }}>{initial}</span>
+       <h2>{contact.firstName} {contact.lastName}</h2>
       </div>
-      <h3 className="text-sm hidden md:block flex-1">{formatPhoneNumber(contact.phone)}</h3>
-      <h3 className="text-sm hidden lg:block flex-1">{contact.email}</h3>
-      <h3 className="text-sm hidden lg:block flex-1 text-nowrap">{contact.jobTitle}, {contact.company}</h3>
+      <h3 className="hidden md:block flex-1">{formatPhoneNumber(contact.phone)}</h3>
+      <h3 className="hidden lg:block flex-1">{contact.email}</h3>
+      <h3 className="hidden lg:block flex-1 text-nowrap">{contact.jobTitle}, {contact.company}</h3>
      </li>
     )
    })}

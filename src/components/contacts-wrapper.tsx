@@ -79,7 +79,7 @@ export default function ContactsWrapper({ contacts: initialContacts }: ContactsW
         <Close />
        </button>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center pt-10">
        <span className="flex items-center justify-center shrink-0 w-20 h-20 rounded-full text-white text-3xl" style={{ backgroundColor: selectedContact.avatarColor }}>{getInitial(selectedContact.firstName)}</span>
       </div>
       <EditForm
@@ -111,10 +111,12 @@ export default function ContactsWrapper({ contacts: initialContacts }: ContactsW
         <Close />
        </button>
       </div>
-      <CreateForm
-       onSuccess={() => setIsOpen(false)}
-       onContactCreated={(newContact) => addContact(newContact)}
-      />
+      <div className="flex items-center pt-10">
+       <CreateForm
+        onSuccess={() => setIsOpen(false)}
+        onContactCreated={(newContact) => addContact(newContact)}
+       />
+      </div>
      </>
     )}
    </BottomSheet>
