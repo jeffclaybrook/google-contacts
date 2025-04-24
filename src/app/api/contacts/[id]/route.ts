@@ -3,15 +3,22 @@ import { auth } from "@clerk/nextjs/server"
 import { decrypt, encrypt } from "@/lib/encryption"
 import prisma from "@/lib/prisma"
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request) {
  const { userId } = await auth()
 
  if (!userId) {
   return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
  }
 
+ const url = new URL(req.url)
+ const id = url.pathname.split("/").pop()
+
+ if (!id) {
+  return NextResponse.json({ error: "Invalid contact ID" }, { status: 400 })
+ }
+
  const contact = await prisma.contact.findUnique({
-  where: { id: params.id }
+  where: { id }
  })
 
  if (!contact || contact.userId !== userId) {
@@ -32,15 +39,11 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
  return NextResponse.json(decrypted)
 }
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function PUT(req: Request) {
  const { userId } = await auth()
 
  if (!userId) {
   return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
- }
-
- if (!params) {
-  console.log("Params not found")
  }
 
  const url = new URL(req.url)
