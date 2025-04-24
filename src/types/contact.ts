@@ -1,6 +1,6 @@
 export type Contact = {
  id: string
- userId: string
+ userId: string | null
  firstName: string
  lastName: string
  phone: string

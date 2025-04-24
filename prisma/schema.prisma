@@ -9,7 +9,7 @@ datasource db {
 
 model Contact {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId      String?
+  userId      String
   firstName   String
   lastName    String
   phone       String
